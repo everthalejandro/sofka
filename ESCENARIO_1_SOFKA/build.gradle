@@ -1,0 +1,62 @@
+plugins{
+    id "net.serenity-bdd.serenity-gradle-plugin" version "3.5.0"
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+}
+
+group 'com.fisa.group.test'
+
+defaultTasks 'clean', 'test', 'serenity:aggregate'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+ext {
+    assertj_core_version = "3.23.1"
+    serenityCoreVersion = '3.8.1'
+    cucumberJava = '7.11.1'
+    simpleSlf4j = '2.0.7'
+    jdbcSqlServer = '12.4.0.jre8'
+    jdbcOracle = '23.2.0.0'
+}
+
+dependencies {
+    testImplementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}"
+    testImplementation "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
+    testImplementation "org.assertj:assertj-core:${assertj_core_version}"
+    testImplementation "net.serenity-bdd:serenity-junit5:${serenityCoreVersion}"
+    testImplementation "io.cucumber:cucumber-java:${cucumberJava}"
+
+    implementation "org.slf4j:slf4j-simple:${simpleSlf4j}"
+    implementation "com.microsoft.sqlserver:mssql-jdbc:${jdbcSqlServer}"
+    implementation "com.oracle.database.jdbc:ojdbc8:${jdbcOracle}"
+
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.17.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+
+}
+
+test {
+    systemProperties System.getProperties()
+    systemProperty "file.encoding", "utf-8"
+}
+
+clean {
+    delete 'target'
+}
+
+gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)

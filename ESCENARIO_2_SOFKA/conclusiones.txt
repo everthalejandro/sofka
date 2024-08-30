@@ -1,0 +1,13 @@
+Buen día lector, a continuación te dare mis conclusiones sobre el escenario de prueba actualmente presentado:
+
+Incialmente, contemple diseñar varios escenarios por cada evento (post, get, delete, put), sin embargo a medida que se
+avanzaba en la automatización se evidencio que el CRUD que se pedia tenia que ser ejecutado en un solo momento, es decir
+todo en un mismo escenario el cual se encuentra definido en lenguaje gherkin sobre el archivo swagger.feature, esto
+debido a que el proyecto https://petstore.swagger.io/ elimina de manera inmediata todos los datos que se envian al crear
+cualquier registro generando error en los demas metodos, por lo tanto se escribieron 5 pasos para un unico escenario bdd,
+donde uno de ellos es reutilizado 4 veces, los demás pasos a pesar de contar con diferentes configuraciones hacen uso a
+un unico metodo que permite enviar los diferentes metodos del CRUD. Lo pueden ubicar en el archivo helpers ubicado en el
+paquete utils.
+
+Por lo demás considero que fue un escenario de bastante analisis de tal manera que se logro dejar el codigo de manera
+optima y reutilizable las veces que sea necesario, sin requerir de mucho esfuerzo en la programación del mismo.

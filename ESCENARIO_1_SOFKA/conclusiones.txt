@@ -1,0 +1,8 @@
+Buen día lector, a continuación te dare mis conclusiones sobre el escenario de prueba actualmente presentado:
+
+Se diseña un unico escenario con difernetes pasos donde se pueden reutilizar varios de ellos, el ingreso a la url se maneja
+de manera de precondición en caso de requerir autoamtizar mas cosas sobre la url https://opencart.abstracta.us/, se pueden
+agregar N cantidad de productos, siempre y cuando se tengan como separador una coma (,) y logicamente el producto exista,
+esto permitira que la pruea sea E2E de manera exitosa. Se debieron realizar diferentes pruebas de manera manual para entender
+el flujo que solicitaba la prueba, la pagina no muestra complicaciones de elementos, es rapida y practica para el uso de
+ejercicios de este estilo.

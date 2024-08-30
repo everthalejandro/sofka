@@ -1,0 +1,1 @@
+gradle clean aggregate test --tests "runner.ejecutor" -i
